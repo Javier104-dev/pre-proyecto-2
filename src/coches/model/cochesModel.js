@@ -27,15 +27,15 @@ const desconnect = async () => {
   }
 };
 
-const connectToCollection = async () => {
+const connectToDb = async (nameCollention) => {
   const connection = await connect();
   const db = connection.db("productos");
-  const collection = db.collection("frutas");
+  const collection = db.collection(nameCollention);
 
   return collection;
 };
 
 module.exports = {
   desconnect,
-  connectToCollection
+  connectToDb
 };
