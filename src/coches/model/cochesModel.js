@@ -1,8 +1,7 @@
 const { MongoClient } = require("mongodb");
+const { DB_URL, DB_NAME } = require("../../config/config");
 
-const url = "mongodb+srv://javiervillca:root123@cluster0.uuuqv8k.mongodb.net/?retryWrites=true&w=majority"
-
-const client = new MongoClient(url);
+const client = new MongoClient(DB_URL);
 
 const connect = async () => {
   console.log('Conectando...');
@@ -29,7 +28,7 @@ const desconnect = async () => {
 
 const connectToDb = async (nameCollention) => {
   const connection = await connect();
-  const db = connection.db("productos");
+  const db = connection.db(DB_NAME);
   const collection = db.collection(nameCollention);
 
   return collection;
