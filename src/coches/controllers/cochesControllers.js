@@ -27,7 +27,7 @@ const verCoche = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const coche = await verCocheServices(id);
+    const coche = await verCocheServices(Number(id));
     res.status(200).json(coche);
 
   } catch (error) {
@@ -60,7 +60,7 @@ const editarCoche = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const coche = await editarCocheServices(id, { modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero });
+    const coche = await editarCocheServices({ id: Number(id), modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero });
     res.status(200).json({ msg: "Coche editado con exito", coche });
 
   } catch (error) {
@@ -76,7 +76,7 @@ const borrarCoche = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await borrarCocheServices(id);
+    await borrarCocheServices(Number(id));
     res.status(200).json({ msg: "Coche eliminado con exito" });
 
   } catch (error) {

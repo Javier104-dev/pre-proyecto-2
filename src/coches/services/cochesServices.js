@@ -1,16 +1,11 @@
 const { connectToDb } = require("../model/cochesModel");
-const { crearId } = require("../utilities/cochesUtilities");
+const { COL_NAME } = require("../../config/config.js");
+const { crearId, mapperCoche, mapperFiltros } = require("../utilities/cochesUtilities");
 
-const COLLECTION_NAME = "coches";
+const verCoches = async (querys) => {
+  const filtros = mapperFiltros(querys);
 
-const verCoches = async ({ marca, modelo, mayor_o_igual }) => {
-  const filtros = {};
-
-  if (marca) filtros.marca = marca;
-  if (modelo) filtros.modelo = modelo;
-  if (mayor_o_igual) filtros.precio = { $gte: Number(mayor_o_igual) };
-
-  const collection = await connectToDb(COLLECTION_NAME);
+  const collection = await connectToDb(COL_NAME);
   const coches = await collection.find(filtros).toArray();
 
   return coches;
@@ -19,8 +14,8 @@ const verCoches = async ({ marca, modelo, mayor_o_igual }) => {
 const verCoche = async (id) => {
   if (!id) throw new Error("El id no corresponde a un vehículo registrado");
 
-  const collection = await connectToDb(COLLECTION_NAME);
-  const coche = await collection.findOne({ id: Number(id) });
+  const collection = await connectToDb(COL_NAME);
+  const coche = await collection.findOne({ id });
 
   if (!coche) throw new Error("Vehículo no encontrado");
 
@@ -28,35 +23,27 @@ const verCoche = async (id) => {
 };
 
 const registrarCoche = async (body) => {
-  const { modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero } = body;
+  const { modelo, marca, precio, anio } = body;
 
   if (!modelo || !marca || !precio || !anio) throw new Error("Faltan datos relevantes");
 
-  const collection = await connectToDb(COLLECTION_NAME);
-  const coche = { id: crearId(), modelo, marca, precio, anio };
-
-  if (descuento) coche.descuento = descuento;
-  if (es_0km) coche.es_0km = es_0km;
-  if (velocidad_crucero) coche.velocidad_crucero = velocidad_crucero;
+  const collection = await connectToDb(COL_NAME);
+  const coche = { ...mapperCoche(body), id: crearId() };
 
   await collection.insertOne(coche);
 
   return coche;
 };
 
-const editarCoche = async (id, body) => {
-  const { modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero } = body;
+const editarCoche = async (body) => {
+  const { id, modelo, marca, precio, anio } = body;
 
   if (!id || !modelo || !marca || !precio || !anio) throw new Error("Faltan datos relevantes");
 
-  const coche = { modelo, marca, precio, anio };
+  const coche = mapperCoche(body);
 
-  if (descuento) coche.descuento = descuento;
-  if (es_0km) coche.es_0km = es_0km;
-  if (velocidad_crucero) coche.velocidad_crucero = velocidad_crucero;
-
-  const collection = await connectToDb(COLLECTION_NAME);
-  await collection.updateOne({ id: Number(id) }, { $set: coche });
+  const collection = await connectToDb(COL_NAME);
+  await collection.updateOne({ id }, { $set: coche });
 
   return coche;
 };
@@ -64,8 +51,8 @@ const editarCoche = async (id, body) => {
 const borrarCoche = async (id) => {
   if (!id) throw new Error("El id ingresado es invalido");
 
-  const collection = await connectToDb(COLLECTION_NAME);
-  await collection.deleteOne({ id: { $eq: Number(id) } });
+  const collection = await connectToDb(COL_NAME);
+  await collection.deleteOne({ id: { $eq: id } });
 };
 
 module.exports = {
