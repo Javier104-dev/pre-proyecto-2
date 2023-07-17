@@ -1,4 +1,4 @@
-const { desconnect } = require("../model/cochesModel");
+const { desconnect } = require("../model/cochesModel.js");
 const {
   verCoches: verCochesServices,
   verCoche: verCocheServices,

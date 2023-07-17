@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const { DB_URL, DB_NAME } = require("../../config/config");
+const { DB_URL, DB_NAME, COL_NAME } = require("../../config/config.js");
 
 const client = new MongoClient(DB_URL);
 
@@ -26,10 +26,10 @@ const desconnect = async () => {
   }
 };
 
-const connectToDb = async (nameCollention) => {
+const connectToDb = async () => {
   const connection = await connect();
   const db = connection.db(DB_NAME);
-  const collection = db.collection(nameCollention);
+  const collection = db.collection(COL_NAME);
 
   return collection;
 };

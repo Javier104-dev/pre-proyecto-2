@@ -1,6 +1,6 @@
 const crearId = () => Number(`${Date.now()}${Math.floor(Math.random() * 10000)}`);
 
-const comprabarValor = (valor) => (valor === 0 || valor === false || valor);
+const comprobarValor = (valor) => (valor === 0 || valor === false || valor);
 
 const mapperFiltros = (filtros) => {
   const { marca, modelo, mayor_o_igual } = filtros;
@@ -21,9 +21,9 @@ const mapperCoche = (coche) => {
     marca,
     precio,
     anio,
-    ...(comprabarValor(descuento) && { descuento }),
-    ...(comprabarValor(es_0km) && { es_0km }),
-    ...(comprabarValor(velocidad_crucero) && { velocidad_crucero })
+    ...(comprobarValor(descuento) && { descuento }),
+    ...(comprobarValor(es_0km) && { es_0km }),
+    ...(comprobarValor(velocidad_crucero) && { velocidad_crucero })
   };
 };
 
