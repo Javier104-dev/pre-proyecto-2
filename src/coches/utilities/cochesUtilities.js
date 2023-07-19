@@ -13,10 +13,9 @@ const mapperFiltros = (filtros) => {
 };
 
 const mapperCoche = (coche) => {
-  const { id, modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero } = coche;
+  const { modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero } = coche;
 
   return {
-    id: Number(id),
     modelo,
     marca,
     precio,

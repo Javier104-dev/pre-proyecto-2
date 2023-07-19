@@ -19,7 +19,6 @@ const verCoches = async (req, res) => {
 
   } finally {
     await desconnect();
-
   }
 };
 
@@ -35,7 +34,6 @@ const verCoche = async (req, res) => {
 
   } finally {
     await desconnect();
-
   }
 };
 
@@ -51,7 +49,6 @@ const registrarCoche = async (req, res) => {
 
   } finally {
     await desconnect();
-
   }
 };
 
@@ -68,7 +65,6 @@ const editarCoche = async (req, res) => {
 
   } finally {
     await desconnect();
-
   }
 };
 
@@ -84,7 +80,6 @@ const borrarCoche = async (req, res) => {
 
   } finally {
     await desconnect();
-
   }
 };
 
