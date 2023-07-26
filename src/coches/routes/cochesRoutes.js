@@ -5,8 +5,8 @@ const {
   registrarCoche,
   editarCoche,
   borrarCoche,
-  urlInexistente
-} = require("../controllers/cochesControllers.js");
+  urlInexistente,
+} = require("../controllers/cochesControllers");
 
 const routes = express.Router();
 
@@ -20,5 +20,5 @@ routes.delete(`${ROUTE_BASE}/:id`, borrarCoche);
 routes.use("*", urlInexistente);
 
 module.exports = {
-  routes
+  routes,
 };

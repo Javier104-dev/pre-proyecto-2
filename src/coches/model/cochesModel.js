@@ -1,14 +1,17 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
+
 const { MongoClient } = require("mongodb");
-const { DB_URL, DB_NAME, COL_NAME } = require("../../config/config.js");
+const { DB_URL, DB_NAME, COL_NAME } = require("../../config/config");
 
 const client = new MongoClient(DB_URL);
 
 const connect = async () => {
-  console.log('Conectando...');
+  console.log("Conectando...");
 
   try {
     const connection = await client.connect();
-    console.log('Conectado');
+    console.log("Conectado");
     return connection;
 
   } catch (error) {
@@ -19,7 +22,7 @@ const connect = async () => {
 const desconnect = async () => {
   try {
     await client.close();
-    console.log('Desconectado');
+    console.log("Desconectado");
 
   } catch (error) {
     console.log(error.message);
@@ -36,5 +39,5 @@ const connectToDb = async () => {
 
 module.exports = {
   desconnect,
-  connectToDb
+  connectToDb,
 };

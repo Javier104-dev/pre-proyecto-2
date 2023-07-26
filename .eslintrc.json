@@ -1,59 +1,18 @@
 {
     "env": {
+        "browser": true,
+        "commonjs": true,
         "es2021": true,
         "node": true
     },
-    "extends": "eslint:all",
-    "overrides": [],
+    "extends": "airbnb-base",
     "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+        "ecmaVersion": "latest"
     },
-    "ignorePatterns": [
-        "/node_modules",
-        ".eslintrc.json",
-        ".gitignore",
-        "package-lock.json",
-        "package.json"
-    ],
     "rules": {
-        "quotes": "off",
-        "linebreak-style": "off",
-        "padded-blocks": "off",
-        "eol-last": "off",
-        "id-length": "off",
-        "no-extra-parens": "off",
-        "camelcase": "off",
-        "indent": ["error", 2], 
-        "new-cap": "off",
-
-        "no-ternary": "off",
-        "multiline-ternary": "off",
-        "curly": "off",
-        
-        "one-var": "off",
-        "array-element-newline": ["error", { "multiline": true }],
-
-        "object-curly-spacing": ["error", "always"],
-        "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }],
-        "quote-props": "off",
-        "sort-keys": "off",
-        
-        "func-style": "off",
-        "function-call-argument-newline": ["error", "never"],
-        "no-magic-numbers": "off",
-        "consistent-return": "off",
-        "space-before-function-paren": "off",
-        "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 5 }],
-        "dot-location": ["error", "property"],
-        "max-statements": ["error", 15],
-
-        "multiline-comment-style":"off",
-        "no-inline-comments": "off",
-        "line-comment-position": "off",
-        "capitalized-comments": "off",
-
+        "linebreak-style": ["error", "windows"],
+        "quotes": ["error", "double"],
         "max-len": ["error", { "code": 150 }],
-        "no-console": "off"
+        "padded-blocks": "off"
     }
 }

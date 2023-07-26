@@ -1,5 +1,7 @@
-const { connectToDb } = require("../model/cochesModel.js");
-const { crearId, mapperCoche, mapperFiltros } = require("../utilities/cochesUtilities.js");
+/* eslint-disable object-curly-newline */
+
+const { connectToDb } = require("../model/cochesModel");
+const { crearId, mapperCoche, mapperFiltros } = require("../utilities/cochesUtilities");
 
 const verCoches = async (querys) => {
   const filtros = mapperFiltros(querys);
@@ -68,5 +70,5 @@ module.exports = {
   verCoche,
   registrarCoche,
   editarCoche,
-  borrarCoche
+  borrarCoche,
 };

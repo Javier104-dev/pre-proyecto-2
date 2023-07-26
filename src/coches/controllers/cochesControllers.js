@@ -1,17 +1,20 @@
-const { desconnect } = require("../model/cochesModel.js");
+/* eslint-disable object-curly-newline */
+/* eslint-disable camelcase */
+
+const { desconnect } = require("../model/cochesModel");
 const {
   verCoches: verCochesServices,
   verCoche: verCocheServices,
   registrarCoche: registrarCocheServices,
   editarCoche: editarCocheServices,
-  borrarCoche: borrarCocheServices
-} = require("../services/cochesServices.js");
+  borrarCoche: borrarCocheServices,
+} = require("../services/cochesServices");
 
 const verCoches = async (req, res) => {
-  const { marca, modelo, mayor_o_igual } = req.query;
+  const { marca, modelo, mayorOIgual } = req.query;
 
   try {
-    const coches = await verCochesServices({ marca, modelo, mayor_o_igual });
+    const coches = await verCochesServices({ marca, modelo, mayorOIgual });
     res.status(200).json(coches);
 
   } catch (error) {
@@ -84,7 +87,7 @@ const borrarCoche = async (req, res) => {
 };
 
 const urlInexistente = (req, res) => {
-  res.status(404).json({ 404: 'Url no encontrada' });
+  res.status(404).json({ 404: "Url no encontrada" });
 };
 
 module.exports = {
@@ -93,5 +96,5 @@ module.exports = {
   registrarCoche,
   editarCoche,
   borrarCoche,
-  urlInexistente
+  urlInexistente,
 };
