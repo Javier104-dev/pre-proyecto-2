@@ -63,16 +63,16 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | DELETE | http://127.0.0.1:8080/coches:id  | Elimina el registro de un coche en específico         |
 
 ## Método GET
-#### Request
-- ```
-  Ejemplo de URI utilizado
-  http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
-  ```
+**Request**
+- Ejemplo de URI utilizado
+  - ```
+    http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
+    ```
 - Parámetros opcionales de tipo QUERY:
-  - marca=Ford *(tipo: string. Trae los coches de una misma marca)*
-  - modelo=Ranger *(tipo: string. Traerá los coches modelo Ranger)*
+  - **marca=Ford** *(tipo: string. Trae los coches de una misma marca)*
+  - **modelo=Ranger** *(tipo: string. Traerá los coches modelo Ranger)*
 
-#### Response
+**Response**
 - Código HTTP: **200** *Ok*
   ``` json
   [
@@ -93,11 +93,13 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 
 ## Método GET - Específico
 #### Request
-- Ejemplo de URI utilizado
-  http://127.0.0.1:8080/coches/1
 
+- Ejemplo de URI utilizado
+  - ```
+    http://127.0.0.1:8080/coches/1
+    ```
 - Parámetro obligatorio de tipo URL:
-  - 1 *(tipo: integer. Indica el código del coche que se requiere obtener)*
+  - **1** *(tipo: integer. Indica el código del coche que se requiere obtener)*
 
 #### Response
 - Código HTTP: **200** *Ok*
