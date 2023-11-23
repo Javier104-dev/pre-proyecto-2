@@ -62,7 +62,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | DELETE | http://127.0.0.1:8080/coches:id  | Elimina el registro de un coche en específico         |
 | USE    | http://127.0.0.1:8080/*          | 404 Page Not Found                                    |
 
-## Método GET
+### Método GET
 **Request**
 - Ejemplo de URI utilizado
   ```
@@ -92,7 +92,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
   ```
 - Código **HTTP 500**: *Error interno*
 
-## Método GET - Específico
+### Método GET - Específico
 **Request**
 
 - Ejemplo de URI utilizado
@@ -121,7 +121,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 - Código **HTTP 500**: *El id no esta definido*
 - Código **HTTP 500**: *El id no corresponde a un vehículo registrado*
 
-## Método POST
+### Método POST
 **Request**
 - URI utilizado
   ```
@@ -154,7 +154,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
     ```
   - Código **HTTP 400**: *Faltan datos relevantes*;
 
-## Método PUT
+### Método PUT
 **Request**
 - URI utilizado
   ```
@@ -191,7 +191,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
   - Código **HTTP 500**: *Faltan datos relevantes*;
   - Código **HTTP 500**: *El id no corresponde a un vehiculo registrado*;
 
-## Método DELETE
+### Método DELETE
 **Request**
 - URI utilizado
   ```
@@ -206,7 +206,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 - Código **HTTP 500**: *El id no esta definido*
 - Código **HTTP 500**: *El id no corresponde a un vehiculo registrado*
 
-## Método USE
+### Método USE
 **Request**
 - URI utilizado
   ```
