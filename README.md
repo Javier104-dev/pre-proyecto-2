@@ -51,7 +51,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | src/coches/utilities   | Contiene funciones en común que se utilizan en todo el módulo        |
 | src/config             | Distribuye las variables de entorno provenientes del archivo `.env`  |
 
-<h1 align='center'>Métodos HTTP</h1>
+<h1 align='center'>Métodos HTTP y ejemplos</h1>
 
 ### Métodos utilizados en el proyecto
 | Tipo   | URI                              | Descripción                                           |
@@ -62,23 +62,47 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | PUT    | http://127.0.0.1:8080/coches:id  | Modifica el registro de un coche en específico        |
 | DELETE | http://127.0.0.1:8080/coches:id  | Elimina el registro de un coche en específico         |
 
-<h1 align='center'>Ejemplos</h1>
-
-### Método GET
-#### Request
+## Método GET
 ```
 Ejemplo de URI utilizado
 http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
 ```
-
-| Query opcionales | Tipo   | Explicación                     |
-| ---------------- | ------ | ------------------------------- |
-| marca=Ford       | string | Traerá los coches de marca Ford |
-| modelo=Ranger    | string | Traerá los coches modelo Ranger |
+#### Request
+- Parámetros opcionales de tipo QUERY:
+  - marca=Ford *(tipo: string. Trae los coches de una misma marca)*
+  - modelo=Ranger *(tipo: string. Traerá los coches modelo Ranger)*
 
 #### Response
-``` json
-[
+- Código HTTP: **200** *Ok*
+  ``` json
+  [
+    {
+      "_id": "64a65682450dc9606752b1c9",
+      "id": 1,
+      "marca": "Ford",
+      "modelo": "Ranger",
+      "anio": 2023,
+      "precio": 12500250,
+      "descuento": 3.5,
+      "es_0km": true,
+      "velocidad_crucero": "Control en el volante"
+    },
+  ]
+  ```
+- Código HTTP: **500** *Error interno*
+
+## Método GET - Específico
+```
+Ejemplo de URI utilizado
+http://127.0.0.1:8080/coches/1
+```
+#### Request
+- Parámetro obligatorio de tipo URL:
+  - 1 *(tipo: integer. Indica el código del coche que se requiere obtener)*
+
+#### Response
+- Código HTTP: **200** *Ok*
+  ``` json
   {
     "_id": "64a65682450dc9606752b1c9",
     "id": 1,
@@ -89,47 +113,10 @@ http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
     "descuento": 3.5,
     "es_0km": true,
     "velocidad_crucero": "Control en el volante"
-  },
-]
-```
-
-#### Códigos de estado de respuesta HTTP en esta consulta
-| Situación de la consulta | Código de estado | Mensaje                            |
-| ------------------------ | ---------------- | ---------------------------------- |
-| Exitoso                  | 200              | Devuelve los registros solicitados |
-| Fallido                  | 500              | Error interno                      |
-
-### Método GET - Específico
-#### Request
-```
-Ejemplo de URI utilizado
-http://127.0.0.1:8080/coches/1
-```
-| Parámetro obligatorio | Tipo    | Explicación                                        |
-| --------------------- | ------- | -------------------------------------------------- |
-| 1                     | integer | Indica el código del coche que se requiere obtener |
-
-#### Response
-``` json
-{
-  "_id": "64a65682450dc9606752b1c9",
-  "id": 1,
-  "marca": "Ford",
-  "modelo": "Ranger",
-  "anio": 2023,
-  "precio": 12500250,
-  "descuento": 3.5,
-  "es_0km": true,
-  "velocidad_crucero": "Control en el volante"
-}
-```
-
-#### Códigos de estado de respuesta HTTP en esta consulta
-| Situación de la consulta | Código de estado | Mensaje                                       |
-| ------------------------ | ---------------- | --------------------------------------------- |
-| Exitoso                  | 200              | Devuelve los registros solicitados            |
-| Fallido                  | 500              | El id no esta definido                        |
-| Fallido                  | 500              | El id no corresponde a un vehículo registrado |
+  }
+  ```
+- Código HTTP: **500** *El id no esta*
+- Código HTTP: **500** *El id no corresponde a un vehículo registrado*
 
 <h2 align='center'>Instrucciones de instalación</h2>
 
