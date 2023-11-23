@@ -50,7 +50,7 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | src/coches/utilities   | Contiene funciones en común que se utilizan en todo el módulo        |
 | src/config             | Distribuye las variables de entorno provenientes del archivo `.env`  |
 
-<h1 align='center'>Métodos HTTP y ejemplos</h1>
+<h2 align='center'>Métodos HTTP y ejemplos</h2>
 
 ### Métodos utilizados en el proyecto
 | Tipo   | URI                              | Descripción                                           |
