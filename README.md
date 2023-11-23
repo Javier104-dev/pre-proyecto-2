@@ -5,17 +5,17 @@ Pre entrega del proyecto 2, en esta ocasión se creó un servidor API RESTful pe
 
 Las propiedades de las entidades que se usan en este proyecto son:
 ``` json
-    {
-      "_id": "64a65682450dc9606752b1c9",
-      "id": 1,
-      "marca": "Ford",
-      "modelo": "Ranger",
-      "anio": 2023,
-      "precio": 12500250,
-      "descuento": 3.5,
-      "es_0km": true,
-      "velocidad_crucero": "Control en el volante"
-    }
+{
+  "_id": "64a65682450dc9606752b1c9",
+  "id": 1,
+  "marca": "Ford",
+  "modelo": "Ranger",
+  "anio": 2023,
+  "precio": 12500250,
+  "descuento": 3.5,
+  "es_0km": true,
+  "velocidad_crucero": "Control en el volante"
+}
 ```
 
 ### Conexión a la base de datos
@@ -61,6 +61,75 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | POST   | http://127.0.0.1:8080/coches     | Crea un registro de un nuevo coche                    |
 | PUT    | http://127.0.0.1:8080/coches:id  | Modifica el registro de un coche en específico        |
 | DELETE | http://127.0.0.1:8080/coches:id  | Elimina el registro de un coche en específico         |
+
+<h1 align='center'>Ejemplos</h1>
+
+### Método GET
+#### Request
+```
+Ejemplo de URI utilizado
+http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
+```
+
+| Query opcionales | Tipo   | Explicación                     |
+| ---------------- | ------ | ------------------------------- |
+| marca=Ford       | string | Traerá los coches de marca Ford |
+| modelo=Ranger    | string | Traerá los coches modelo Ranger |
+
+#### Response
+``` json
+[
+  {
+    "_id": "64a65682450dc9606752b1c9",
+    "id": 1,
+    "marca": "Ford",
+    "modelo": "Ranger",
+    "anio": 2023,
+    "precio": 12500250,
+    "descuento": 3.5,
+    "es_0km": true,
+    "velocidad_crucero": "Control en el volante"
+  },
+]
+```
+
+#### Códigos de estado de respuesta HTTP en esta consulta
+| Situación de la consulta | Código de estado | Mensaje                            |
+| ------------------------ | ---------------- | ---------------------------------- |
+| Exitoso                  | 200              | Devuelve los registros solicitados |
+| Fallido                  | 500              | Error interno                      |
+
+### Método GET - Específico
+#### Request
+```
+Ejemplo de URI utilizado
+http://127.0.0.1:8080/coches/1
+```
+| Parámetro obligatorio | Tipo    | Explicación                                        |
+| --------------------- | ------- | -------------------------------------------------- |
+| 1                     | integer | Indica el código del coche que se requiere obtener |
+
+#### Response
+``` json
+{
+  "_id": "64a65682450dc9606752b1c9",
+  "id": 1,
+  "marca": "Ford",
+  "modelo": "Ranger",
+  "anio": 2023,
+  "precio": 12500250,
+  "descuento": 3.5,
+  "es_0km": true,
+  "velocidad_crucero": "Control en el volante"
+}
+```
+
+#### Códigos de estado de respuesta HTTP en esta consulta
+| Situación de la consulta | Código de estado | Mensaje                                       |
+| ------------------------ | ---------------- | --------------------------------------------- |
+| Exitoso                  | 200              | Devuelve los registros solicitados            |
+| Fallido                  | 500              | El id no esta definido                        |
+| Fallido                  | 500              | El id no corresponde a un vehículo registrado |
 
 <h2 align='center'>Instrucciones de instalación</h2>
 
