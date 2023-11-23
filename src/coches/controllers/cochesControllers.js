@@ -61,7 +61,7 @@ const editarCoche = async (req, res) => {
 
   try {
     const coche = await editarCocheServices({ id: Number(id), modelo, marca, precio, anio, descuento, es_0km, velocidad_crucero });
-    res.status(200).json({ msg: "Coche editado con exito", coche });
+    res.status(200).json({ msg: "Coche editado con éxito", coche });
 
   } catch (error) {
     res.status(500).json({ error: error.message });

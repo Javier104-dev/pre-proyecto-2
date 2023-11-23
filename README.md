@@ -34,7 +34,6 @@ Para conectarnos a la nube se utilizó el paquete de controladores oficial `mong
 - **Express:** Framework web para Node.js, simplifica la creación de aplicaciones web y APIs.
 - **ESLint:** Herramienta de linting para mantener un código JavaScript/Node.js consistente y legible.
 - **Dotenv:** Carga variables de entorno desde un archivo `.env` en la aplicación.
-- **Nodemon:** Herramienta que reinicia automáticamente la aplicación Node.js cuando se detectan cambios en el código fuente.
 
 ### Explicación de la arquitectura utilizada
 El proyecto tiene una arquitectura en capas, para separar responsabilidades y hacerlo lo más modular posible.
@@ -61,19 +60,21 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | POST   | http://127.0.0.1:8080/coches     | Crea un registro de un nuevo coche                    |
 | PUT    | http://127.0.0.1:8080/coches:id  | Modifica el registro de un coche en específico        |
 | DELETE | http://127.0.0.1:8080/coches:id  | Elimina el registro de un coche en específico         |
+| USE    | http://127.0.0.1:8080/*          | 404 Page Not Found                                    |
 
 ## Método GET
 **Request**
 - Ejemplo de URI utilizado
-  - ```
-    http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
-    ```
-- Parámetros opcionales de tipo QUERY:
-  - **marca=Ford** *(tipo: string. Trae los coches de una misma marca)*
-  - **modelo=Ranger** *(tipo: string. Traerá los coches modelo Ranger)*
+  ```
+  http://127.0.0.1:8080/coches?marca=Ford&modelo=Ranger
+  ```
+
+- Parámetros opcionales de tipo QUERY
+  - **marca=Ford**: *(tipo: string. Trae los coches de una misma marca)*
+  - **modelo=Ranger**: *(tipo: string. Traerá los coches modelo Ranger)*
 
 **Response**
-- Código HTTP: **200** *Ok*
+- Código **HTTP 200** *Ok*
   ``` json
   [
     {
@@ -89,20 +90,21 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
     },
   ]
   ```
-- Código HTTP: **500** *Error interno*
+- Código **HTTP 500**: *Error interno*
 
 ## Método GET - Específico
-#### Request
+**Request**
 
 - Ejemplo de URI utilizado
-  - ```
-    http://127.0.0.1:8080/coches/1
-    ```
-- Parámetro obligatorio de tipo URL:
-  - **1** *(tipo: integer. Indica el código del coche que se requiere obtener)*
+  ```
+  http://127.0.0.1:8080/coches/1
+  ```
 
-#### Response
-- Código HTTP: **200** *Ok*
+- Parámetro obligatorio de tipo URL
+  - **1**: *(tipo: integer. Indica el código del coche que se requiere obtener)*
+
+**Response**
+- Código **HTTP 200** *Ok*
   ``` json
   {
     "_id": "64a65682450dc9606752b1c9",
@@ -116,8 +118,106 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
     "velocidad_crucero": "Control en el volante"
   }
   ```
-- Código HTTP: **500** *El id no esta*
-- Código HTTP: **500** *El id no corresponde a un vehículo registrado*
+- Código **HTTP 500**: *El id no esta definido*
+- Código **HTTP 500**: *El id no corresponde a un vehículo registrado*
+
+## Método POST
+**Request**
+- URI utilizado
+  ```
+  http://127.0.0.1:8080/coches
+  ```
+
+- Parámetros requeridos del BODY
+  - **marca=Ford**: *(tipo: string. Establece el valor de la marca)*
+  - **modelo=Ranger**: *(tipo: string. Establece el valor del modelo)*
+  - **anio=2023**: *(tipo: integer. Establece el valor del anio)*
+  - **precio=12500250**: *(tipo: decimal. Establece el valor del precio)*
+
+- Parámetros opcionales del BODY
+  - **descuento=3.5**: *(tipo: decimal. Establece el valor del descuento)*
+  - **es_0km=true**: *(tipo: boolean. Establece si es un coche 0km)*
+
+**Response**
+  - Código **HTTP 200** Ok: *Coche registrado con exito*
+    ``` json
+    {
+      "_id": "64a8bdc543338572ea34fc73",
+      "id": 12,
+      "marca": "Ford",
+      "modelo": "Ranger",
+      "anio": 2023,
+      "precio": 12500250,
+      "descuento": 3.5,
+      "es_0km": true
+    }
+    ```
+  - Código **HTTP 400**: *Faltan datos relevantes*;
+
+## Método PUT
+**Request**
+- URI utilizado
+  ```
+  http://127.0.0.1:8080/coches/12
+  ```
+
+- Parámetro obligatorio de tipo URL
+  - **12**: *(tipo: integer. Indica el id del coche que se requiere modificar)*
+
+- Parámetros requeridos del BODY
+  - **marca=Ford**: *(tipo: string. Establece el valor de la marca)*
+  - **modelo=Fiesta**: *(tipo: string. Establece el valor del modelo)*
+  - **anio=2018**: *(tipo: integer. Establece el valor del anio)*
+  - **precio=2500750**: *(tipo: decimal. Establece el valor del precio)*
+
+- Parámetros opcionales del BODY
+  - **descuento=3.5** *(tipo: decimal. Establece el valor del descuento)*
+  - **es_0km=true** *(tipo: boolean. Establece si es un coche 0km)*
+
+**Response**
+  - Código **HTTP 200** Ok: *Coche editado con éxito*
+    ``` json
+    {
+      "_id": "64a8bdc543338572ea34fc73",
+      "id": 12,
+      "marca": "Ford",
+      "modelo": "Fiesta",
+      "anio": 2018,
+      "precio": 2500750,
+      "descuento": 3.5,
+      "es_0km": true
+    }
+    ```
+  - Código **HTTP 500**: *Faltan datos relevantes*;
+  - Código **HTTP 500**: *El id no corresponde a un vehiculo registrado*;
+
+## Método DELETE
+**Request**
+- URI utilizado
+  ```
+  http://127.0.0.1:8080/coches/12
+  ```
+
+- Parámetro obligatorio de tipo URL
+  - **12**: *(tipo: integer. Indica el id del coche que se requiere eliminar)*
+
+**Response**
+- Código **HTTP 200** Ok: *Coche eliminado con exito*
+- Código **HTTP 500**: *El id no esta definido*
+- Código **HTTP 500**: *El id no corresponde a un vehiculo registrado*
+
+## Método USE
+**Request**
+- URI utilizado
+  ```
+  http://127.0.0.1:8080/cualquier-url-erronea
+  ```
+
+- Parámetro obligatorio de tipo URL
+  - **cualquier-url-erronea**: *(tipo: string. Indica una URI inexistente)*
+
+**Response**
+- Código **HTTP 404**: *Url no encontrada*
 
 <h2 align='center'>Instrucciones de instalación</h2>
 
