@@ -58,8 +58,8 @@ El proyecto tiene una arquitectura en capas, para separar responsabilidades y ha
 | GET    | http://127.0.0.1:8080/coches     | Obtiene los registros de los coches (permite filtros) |
 | GET    | http://127.0.0.1:8080/coches/:id | Obtiene el registro de un coche en específico         |
 | POST   | http://127.0.0.1:8080/coches     | Crea un registro de un nuevo coche                    |
-| PUT    | http://127.0.0.1:8080/coches:id  | Modifica el registro de un coche en específico        |
-| DELETE | http://127.0.0.1:8080/coches:id  | Elimina el registro de un coche en específico         |
+| PUT    | http://127.0.0.1:8080/coches/:id  | Modifica el registro de un coche en específico        |
+| DELETE | http://127.0.0.1:8080/coches/:id  | Elimina el registro de un coche en específico         |
 | USE    | http://127.0.0.1:8080/*          | 404 Page Not Found                                    |
 
 ### Método GET
